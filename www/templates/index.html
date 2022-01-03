@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+
+<div id="background" class="fixed">
+	<video id="bg-video" muted autoplay loop>
+		<source src="{{ url_for('static', filename='videos/background.mp4') }}">
+		<strong>Your browser does not support the video tag.</strong>
+	</video>
+</div>
+
+<div id="bg-overlay" class="overlay fixed"></div>
+
+<nav id="navbar" class="fixed">
+	<a href="#">
+		<img id="site-logo" class="nav-item" src="{{ url_for('static', filename='images/logo.png') }}">
+	</a>
+
+	<ul id="site-links" class="nav-item">
+		<li class="site-link">
+			<a href="#">마이페이지</a>
+		</li>
+		<li class="site-link">
+			<a href="#">위시리스트</a>
+		</li>
+		<li class="site-link">
+			<a href="#">로그인</a>
+		</li>
+	</ul>
+</nav>
+
+<div id="fold" class="content">
+	<div class="nav-gap"></div>
+	<div id="fold-content">
+		<div id="site-text">
+			<span id="headline">데이터 갱신까지 남은 시간</span><br>
+			데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
+			오늘은 총 8번의 갱신 중에 <span id="interval"></span>번 갱신했어요.
+		</div>
+		<div id="countdown">
+			<ul>
+				<li><span class="time" id="hours"></span>Hours</li>
+				<li><span class="time" id="minutes"></span>Minutes</li>
+				<li><span class="time" id="seconds"></span>Seconds</li>
+			</ul>
+		</div>
+		<a href="#expand" id="btn-expand" class="btn-flip" 
+		data-back="클릭해 데이터 조회" data-front="정보가 궁금하신가요?"></a>
+	
+
+	</div>
+</div>
+
+<div id="expand" class="content">
+	<a href="#" id="btn-expand" class="btn-flip" 
+	data-back="접기" data-front="fold"></a>
+	<div id="gradient-overlay"></div>
+</div>
+
+{% endblock %}
