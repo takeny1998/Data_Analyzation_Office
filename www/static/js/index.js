@@ -1,12 +1,5 @@
 $(document).ready(function() {
 
-	var is_expanded = get_is_expanded();
-
-	if(is_expanded == 'true') {
-		expand()
-	} else{
-		fold()
-	}
 	// navbar 색상 변경 스크립트
 	$('.site-link').hover(
 		// 마우스 올라왔을때
@@ -27,11 +20,25 @@ $(document).ready(function() {
 		}
 	)
 	
-	$('#btn-expand').click(function() {
-		
-		set_is_expanded('false')
-		expand();
-	})
 	// 카운트다운
 	refresh_data();
+
+	var today = get_fmtted_date(new Date());
+	
+	new dateDropper({
+		selector: '#date-picker',
+		minDate: "2021-12-17",
+		lang: 'ko',
+		maxDate: today,
+		expandedOnly: true
+	});
+
+	new Pageable("#wrap", {
+		animation: 500
+	});
 })
+
+
+function get_fmtted_date(dt) {
+	return dt.getFullYear() + '/' + (dt.getMonth()+1) + '/'+ dt.getDate();
+}

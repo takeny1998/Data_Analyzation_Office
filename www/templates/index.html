@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- import section -->
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+
+<!-- Date Picker -->
+<script src="{{ url_for('static', filename='js/date-dropper.js') }}"></script>
+<script src="{{ url_for('static', filename='js/date-dropper-ko.js') }}"></script>
+
+<!-- Pageable -->
+<script src="https://unpkg.com/pageable@latest/dist/pageable.min.js"></script>
+
+<!-- import section end -->
 
 <div id="background" class="fixed">
 	<video id="bg-video" muted autoplay loop>
@@ -14,28 +24,33 @@
 
 <div id="bg-overlay" class="overlay fixed"></div>
 
-<nav id="navbar" class="fixed">
-	<a href="#">
-		<img id="site-logo" class="nav-item" src="{{ url_for('static', filename='images/logo.png') }}">
-	</a>
+<div>
+	<nav id="navbar" class="fixed">
+		<a href="#">
+			<img id="site-logo" class="nav-item" src="{{ url_for('static', filename='images/logo.png') }}">
+		</a>
+	
+		<ul id="site-links" class="nav-item">
+			<li class="site-link">
+				<a href="#">마이페이지</a>
+			</li>
+			<li class="site-link">
+				<a href="#">위시리스트</a>
+			</li>
+			<li class="site-link">
+				<a href="#">로그인</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 
-	<ul id="site-links" class="nav-item">
-		<li class="site-link">
-			<a href="#">마이페이지</a>
-		</li>
-		<li class="site-link">
-			<a href="#">위시리스트</a>
-		</li>
-		<li class="site-link">
-			<a href="#">로그인</a>
-		</li>
-	</ul>
-</nav>
 
-<div id="fold" class="content">
-	<div class="nav-gap"></div>
-	<div id="fold-content">
-		<div id="site-text">
+<div id="wrap">
+	<!-- <div class="nav-gap"></div> -->
+	
+	<div id="fold-content" class="content" data-anchor="fold">
+		<div class="nav-gap"></div>
+		<div class="site-text">
 			<span id="headline">데이터 갱신까지 남은 시간</span><br>
 			데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
 			오늘은 총 8번의 갱신 중에 <span id="interval"></span>번 갱신했어요.
@@ -47,17 +62,22 @@
 				<li><span class="time" id="seconds"></span>Seconds</li>
 			</ul>
 		</div>
-		<a href="#expand" id="btn-expand" class="btn-flip" 
-		data-back="클릭해 데이터 조회" data-front="정보가 궁금하신가요?"></a>
-	
+	</div>
 
+
+	<div id="expand-content" class="content" data-anchor="expand">
+		<div class="nav-gap"></div>
+		
+		<div class="site-text">
+			<span id="headline">어느 날짜의 정보를 보고 싶으신가요?</span><br>
+			현재는 <span id="curt-date"></span>일의 정보를 표시하고 있어요. 아래 글상자를 클릭하시면 기준일을 변경하실 수 있어요.
+		</div>
+	
+		<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
+		<div id="gradient-overlay"></div>
 	</div>
 </div>
 
-<div id="expand" class="content">
-	<a href="#" id="btn-expand" class="btn-flip" 
-	data-back="접기" data-front="fold"></a>
-	<div id="gradient-overlay"></div>
-</div>
+
 
 {% endblock %}
