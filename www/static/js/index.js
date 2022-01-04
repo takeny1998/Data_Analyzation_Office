@@ -34,7 +34,8 @@ $(document).ready(function() {
 	});
 
 	new Pageable("#wrap", {
-		animation: 500
+		animation: 500,
+		pip: true,
 	});
 })
 

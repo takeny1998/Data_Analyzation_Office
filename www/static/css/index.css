@@ -149,9 +149,27 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	margin-top:50px;
 }
 
-#date-picker {
-	height:30px;
+.tooltip-container {
+	position:absolute;
+	bottom:50px;
+	width:100%;
+	height:auto;
+	text-align: center;
 }
+
+#date-picker {
+	width: 200px;
+	height:30px;
+	padding: 5px;
+	color: white;
+	text-align: center;
+	font-family: Chosunilbo_myungjo;
+	font-size:15px;
+	background: rgba(255, 255, 255, 0.3);
+	border-bottom: 1px white solid;
+	border:none;
+}
+
 
 .datepicker-style {
 	--dd-text1: #000;

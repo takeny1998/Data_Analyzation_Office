@@ -105,19 +105,36 @@ A:hover {text-decoration:none;}
 	content: attr(data-front);
 	transform: translateY(0) rotateX(0);
 }
-/* animations */
-
 
 /* text-field */
-#date-picker {
-	width: 200px;
-	height:50px;
-	padding: 5px;
-	color: white;
-	text-align: center;
-	font-family: Chosunilbo_myungjo;
-	font-size:15px;
-	background: rgba(255, 255, 255, 0.5);
-	border-bottom: 1px white solid;
-	border:none;
+
+/* animations */
+.blink-2 {
+	-webkit-animation: blink-2 1.5s infinite both;
+	        animation: blink-2 1.5s infinite both;
 }
+
+@-webkit-keyframes blink-2 {
+	0% {
+	  opacity: 1;
+	}
+	50% {
+	  opacity: 0.2;
+	}
+	100% {
+	  opacity: 1;
+	}
+}
+
+@keyframes blink-2 {
+	0% {
+	  opacity: 1;
+	}
+	50% {
+	  opacity: 0.2;
+	}
+	100% {
+	  opacity: 1;
+	}
+}
+  
