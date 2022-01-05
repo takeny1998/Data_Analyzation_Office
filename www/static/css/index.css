@@ -126,9 +126,16 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 
 /* navbar end ------------ */
 
-.nav-gap {
-	height:150px;
+.gap {
+	height:20%;
+	min-height: 150px;
 }
+
+#gap-expand {
+	min-height: 150px;
+}
+
+/* body elements */
 .content {
 	color:white;
 	font-family: Chosunilbo_myungjo;
@@ -136,6 +143,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	position: relative;
 }
 
+/* fold container */
 .site-text {
 	line-height: 1.5;
 	margin: 20px 0px;
@@ -145,8 +153,8 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	font-size:36px;
 }
 
-#btn-expand {
-	margin-top:50px;
+#btn-tutorial {
+	margin-top: 70px;
 }
 
 .tooltip-container {
@@ -157,6 +165,7 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	text-align: center;
 }
 
+/* expand container */
 #date-picker {
 	width: 200px;
 	height:30px;
@@ -170,12 +179,9 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	border:none;
 }
 
-
-.datepicker-style {
-	--dd-text1: #000;
-	--dd-gradient:linear-gradient(45deg, #292929 0%, #555555 100%);
-	--dd-monthBackground: var(--dd-gradient);
-	--dd-confirmButtonBackground: var(--dd-gradient);
-	--dd-selectedBackground: var(--dd-gradient);
+#footer {
+	height: 600px !important;
 }
+
+
 

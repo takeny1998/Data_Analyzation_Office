@@ -49,10 +49,9 @@
 
 
 <div id="wrap">
-	<!-- <div class="nav-gap"></div> -->
 	
 	<div id="fold-content" class="content" data-anchor="fold">
-		<div class="nav-gap"></div>
+		<div id="gap-fold" class="gap"></div>
 		<div class="site-text">
 			<span id="headline">데이터 갱신까지 남은 시간</span><br>
 			데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
@@ -66,7 +65,8 @@
 			</ul>
 		</div>
 
-		<a href="#" id="btn-get_" class="btn-flip" data-front="처음 방문하셨나요?" data-back="더 알아보기"></a>
+		<a href="#" id="btn-tutorial" class="btn-flip" 
+		data-front="처음 방문하셨나요?" data-back="데이터 분석소 알아보기"></a>
 
 		<div class="tooltip-container">
 			<span class="tooltip blink-2">
@@ -77,7 +77,7 @@
 
 
 	<div id="expand-content" class="content" data-anchor="expand">
-		<div class="nav-gap"></div>
+		<div id="gap-expand" class="gap"></div>
 		
 		<div class="site-text">
 			<span id="headline">어느 날짜의 정보를 보고 싶으신가요?</span><br>
@@ -86,6 +86,10 @@
 	
 		<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
 		<div id="gradient-overlay"></div>
+	</div>
+
+	<div class="content" data-anchor="footer">
+
 	</div>
 </div>
 

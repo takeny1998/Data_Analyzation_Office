@@ -106,6 +106,7 @@ A:hover {text-decoration:none;}
 	transform: translateY(0) rotateX(0);
 }
 
+
 /* text-field */
 
 /* animations */
@@ -138,3 +139,12 @@ A:hover {text-decoration:none;}
 	}
 }
   
+/* datepicker */
+
+.datepicker-style {
+	--dd-text1: #000;
+	--dd-gradient:linear-gradient(45deg, #292929 0%, #555555 100%);
+	--dd-monthBackground: var(--dd-gradient);
+	--dd-confirmButtonBackground: var(--dd-gradient);
+	--dd-selectedBackground: var(--dd-gradient);
+}
