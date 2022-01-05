@@ -168,7 +168,7 @@ top_200 = top_nouns(clean_words,200)
 top_30 = top_nouns(clean_words,30)
 
 top_10 = pd.DataFrame.from_dict(top_10)
-top_10.to_csv('/mnt/result/Culture/{}-C.csv'.format(date),index=False,header=False, encoding='utf-8-sig')
+# top_10.to_csv('/mnt/result/Culture/{}-C.csv'.format(date),index=False,header=False, encoding='utf-8-sig')
 wordcloud(date, top_200) #워드클라우드
 showGraph(date, top_30) # 그래프
 
