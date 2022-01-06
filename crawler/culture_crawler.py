@@ -1,3 +1,5 @@
+import sys
+import json
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
@@ -5,6 +7,9 @@ import urllib.request
 from urllib.parse import quote
 from datetime import date, datetime
 from selenium import webdriver
+
+from database import DBHandler
+
 from konlpy.tag import Mecab
 from collections import Counter
 from wordcloud import WordCloud
@@ -21,7 +26,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 
 #정치 뉴스 들어가기 및 헤드라인 더보기 클릭을 위한 selenium
 def selenium():
-    wd = webdriver.Chrome('/mnt/crawling/chromedriver', options = chrome_options)
+    wd = webdriver.Chrome(options = chrome_options)
     #문화 뉴스 url
     url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=103'
     wd.get(url)
@@ -157,6 +162,7 @@ str_article = ""
 for article in news_df['Article']:
     str_article += article
 
+
 #형태소분석기 konlp Mecab
 mecab = Mecab()
 nouns = mecab.nouns(str_article)
@@ -167,8 +173,9 @@ top_10 = top_nouns(clean_words,10)
 top_200 = top_nouns(clean_words,200)
 top_30 = top_nouns(clean_words,30)
 
-top_10 = pd.DataFrame.from_dict(top_10)
-# top_10.to_csv('/mnt/result/Culture/{}-C.csv'.format(date),index=False,header=False, encoding='utf-8-sig')
-wordcloud(date, top_200) #워드클라우드
-showGraph(date, top_30) # 그래프
+top_10 = json.dumps(top_10)
+top_30 = json.dumps(top_30)
+top_200 = json.dumps(top_200)
 
+db = DBHandler()
+db.insert_crawling_data('C', top_10, top_30, top_200)
