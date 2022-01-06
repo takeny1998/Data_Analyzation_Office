@@ -1,7 +1,8 @@
 import pymysql as sql
 import configparser
+import json
 
-class DbHandler:
+class DBHandler:
 	
 	def __init__(self):
 		# parse 'config.ini' file automatically
@@ -10,12 +11,12 @@ class DbHandler:
 		parser = configparser.ConfigParser()
 		parser.read('config.ini')
 
-		db_props = parser["DATABASE"]
-		DB_HOST = db_props['HOST']
-		DB_PORT = db_props.getint('PORT')
-		DB_NAME = db_props['NAME']
-		DB_USER = db_props['USER']
-		DB_PW = db_props['PW']
+		DB_props = parser["DATABASE"]
+		DB_HOST = DB_props['HOST']
+		DB_PORT = DB_props.getint('PORT')
+		DB_NAME = DB_props['NAME']
+		DB_USER = DB_props['USER']
+		DB_PW = DB_props['PW']
 
 		conn = sql.connect(
 						host=DB_HOST,
@@ -26,6 +27,7 @@ class DbHandler:
 	
 		self.cursor = conn.cursor()
 
+	def insert_crawling_data():
+		
 	
 	
-db = DbHandler()
