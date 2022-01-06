@@ -1,6 +1,8 @@
 import pymysql as sql
 import configparser
 import json
+import time
+
 
 class DBHandler:
 	
@@ -18,16 +20,25 @@ class DBHandler:
 		DB_USER = DB_props['USER']
 		DB_PW = DB_props['PW']
 
-		conn = sql.connect(
+		self.conn = sql.connect(
 						host=DB_HOST,
 						port=DB_PORT,
 						database=DB_NAME,
 						user=DB_USER,
 						password=DB_PW)
 	
-		self.cursor = conn.cursor()
+		self.cursor = self.conn.cursor()
 
-	def insert_crawling_data():
-		
+	def insert_crawling_data(self, type, top_10, top_30, top_200):
+		now = time.strftime('%Y-%m-%d %H:%M:%S')
+		sql = '''
+			INSERT INTO data
+			VALUES(null, %s, %s, %s, %s, %s)'''
+
+		self.cursor.execute(sql, (now, type, top_10, top_30, top_200))
+		self.conn.commit()
+
+	def close(self):
+		self.conn.close()
 	
-	
+db = DBHandler()
