@@ -6,86 +6,78 @@ from bs4 import BeautifulSoup
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By as by
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 from konlpy.tag import Mecab
 from collections import Counter
 
+from database.db_handler import DBHandler
+
 
 class CultureCrawler:
     
-    def __init__(self, web_driv_path):
+    def __init__(self):
         # set chrome options to be web browser unvisible
-        self.chrome_options = webdriver.ChromeOptions()
-        self.chrome_options.add_argument('--headless')
-        self.chrome_options.add_argument('--no-sandbox')
-        self.chrome_options.add_argument('--disable-dev-shm-usage')
-
+        self.__chrome_options = webdriver.ChromeOptions()
+        self.__chrome_options.add_argument('--headless')
+        self.__chrome_options.add_argument('--no-sandbox')
+        self.__chrome_options.add_argument('--disable-dev-shm-usage')
+        service = Service(ChromeDriverManager().install())
         # set web driver
-        self.web_driv = webdriver.Chrome(web_driv_path, options = self.chrome_options)
-
+        web_driv = webdriver.Chrome(service=service, options = self.__chrome_options)
         
-        #메인
-        urls = self.selenium()
-        self.get_news(urls[0])
-        news_df = pd.DataFrame(columns=("Title","Article"))
-        for url in urls:
-            df = self.get_news(url)
-            news_df = pd.concat([news_df, df])
+        # pre-precessing(ex. click 'find more button')
+        # and get url list from headline news page
+        urls = self.__pre_processing(web_driv)
+        web_driv.close()
 
-            
-        str_article = ""
-        for article in news_df['Article']:
-            str_article += article
-        #형태소분석기 konlp Mecab
-        mecab = Mecab()
-        nouns = mecab.nouns(str_article)
-        clean_words = self.nouns_of_article(nouns)
+        articles_str = self.__process(urls)
+        self.__clean_words = self.__analyze_morpheme(articles_str)
 
-        top_10 = self.top_nouns(clean_words,10)
-        top_200 = self.top_nouns(clean_words,200)
-        top_30 = self.top_nouns(clean_words,30)
-
-        top_10 = json.dumps(top_10)
-        top_30 = json.dumps(top_30)
-        top_200 = json.dumps(top_200)
-
-        # db = DBHandler()
-        # db.insert_crawling_data('C', top_10, top_30, top_200)
-
-
-    #정치 뉴스 들어가기 및 헤드라인 더보기 클릭을 위한 selenium
-    def selenium(self):
+    #Pre-processing news pages using selenium
+    def __pre_processing(self, web_driv):
         theview_url = []
 
         #문화 뉴스 url
         url = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=103'
-        self.web_driv.get(url)
+        web_driv.get(url)
 
         #find 'article find more' button
-        cluster_more = self.web_driv.find_element(by.CLASS_NAME, 'cluster_more')
+        cluster_more = web_driv.find_elements(by.CLASS_NAME, 'cluster_more')
 
         # click it if it's exist
-        if cluster_more is not None:
-            cluster_more.click()
+        if len(cluster_more) > 0:
+            cluster_more[0].click()
 
-        self.web_driv.implicitly_wait(10)
+        web_driv.implicitly_wait(10)
 
-        #뉴스더보기 url_list만들기
-        theview_list = self.web_driv.find_elements(by.CLASS_NAME, 'cluster_head_topic > a')
+        theview_list = web_driv.find_elements(by.CLASS_NAME, 'cluster_head_topic > a')
 
         for theview in theview_list: 
             theview_url.append(theview.get_attribute('href'))            
 
-        print(theview_url)
-        self.web_driv.close()
         return theview_url
 
 
+    def __process(self, urls):
+        news_df = pd.DataFrame(columns=("Title","Article"))
+        
+        for url in urls:
+            df = self.__get_news(url)
+            news_df = pd.concat([news_df, df])
+            
+        articles_str = ""
+        for article_str in news_df['Article']:
+            articles_str += article_str
+        
+        return articles_str
+
+
     #beautifulSoup을 사용해 세부 뉴스 데이터 크롤링
-    def get_news(self, url):
+    def __get_news(self, url):
         #데이터 프레임 만들기
         news_df = pd.DataFrame(columns=("Title","Article"))
-        idx = 0
         
         #해당 뉴스를 들어가 정보 얻기
         search_url = urllib.request.urlopen(url).read()
@@ -98,7 +90,6 @@ class CultureCrawler:
             news_html = BeautifulSoup(news_link, 'html.parser')
 
             title = news_html.find('h3',{'id':'articleTitle'}).get_text()
-            # datetime = news_html.find('span',{'class':'t11'}).get_text()
             article = news_html.find('div',{'id':'articleBodyContents'}).get_text()
             article = article.replace("// flash 오류를 우회하기 위한 함수 추가","")
             article = article.replace("function _flash_removeCallback()","")
@@ -107,19 +98,22 @@ class CultureCrawler:
             article = article.replace("","")
             article = article.replace("\n","")
             article = article.replace("\t","")
-            news_df.loc[idx] = [title, article]
-            idx += 1
+
+            row = {'Title': title, 'Article': article}
+            news_df = news_df.append(row, ignore_index=True)
             
-            print("#", end="") 
         return news_df
 
-    #형태소 분석 함수: 명사만 추출
-    def tokenize(self, df):
+
+    def __analyze_morpheme(self, articles):
         mecab = Mecab()
-        return mecab.nouns(df)
-        
+        nouns = mecab.nouns(articles)
+        clean_words = self.__nouns_of_article(nouns)
+        return clean_words
+
+
     #불용어 제거 함수
-    def nouns_of_article(self, result):
+    def __nouns_of_article(self, result):
         # 한글 불용어 리스트 불러오기 시작
         stopwords = []
         clean_words = []
@@ -130,16 +124,20 @@ class CultureCrawler:
         for word in result: 
             if word not in stopwords: #불용어 제거
                 clean_words.append(word)
-        
         return clean_words
 
-    #top--10명사를 추출 
-    def top_nouns(self, clean_words, top_num):
-        count = Counter(clean_words)
-        top_nouns = count.most_common(top_num)
+    def top_nouns(self):
+        top_nouns = Counter(self.__clean_words)
 
-        return top_nouns
+        return json.dumps(top_nouns, ensure_ascii=False)
+
+    # def top_nouns(self, top_num):
+    #     count = Counter(self.clean_words)
+    #     top_nouns = count.most_common(top_num)
+
+    #     return json.dumps(top_nouns, ensure_ascii=False)
 
 
-
-c = CultureCrawler('/mnt/crawling/chromedriver')
+    
+c = CultureCrawler()
+data = c.top_nouns()
