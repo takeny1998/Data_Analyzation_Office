@@ -29,16 +29,15 @@ class DBHandler:
 	
 		self.cursor = self.conn.cursor()
 
-	def insert_crawling_data(self, type, top_10, top_30, top_200):
+	def insert_crawling_data(self, type, clean_words):
 		now = time.strftime('%Y-%m-%d %H:%M:%S')
 		sql = '''
 			INSERT INTO data
-			VALUES(null, %s, %s, %s, %s, %s)'''
+			VALUES(null, %s, %s, %s)'''
 
-		self.cursor.execute(sql, (now, type, top_10, top_30, top_200))
+		self.cursor.execute(sql, (now, type, clean_words))
 		self.conn.commit()
 
 	def close(self):
 		self.conn.close()
 	
-db = DBHandler()
