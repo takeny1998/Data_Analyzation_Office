@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import urllib.request
 
+
 from bs4 import BeautifulSoup
 
 from selenium import webdriver
@@ -13,9 +14,9 @@ from konlpy.tag import Mecab
 from collections import Counter
 
 from database.db_handler import DBHandler
+import time
 
-
-class CultureCrawler:
+class Crawler:
     BASE_URL = 'https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1='
     keywords = {
         'POLITICAL': '100',
@@ -118,13 +119,11 @@ class CultureCrawler:
             
         return news_df
 
-
     def __analyze_morpheme(self, articles):
         mecab = Mecab()
         nouns = mecab.nouns(articles)
         clean_words = self.__nouns_of_article(nouns)
         return clean_words
-
 
     #불용어 제거 함수
     def __nouns_of_article(self, result):
@@ -140,7 +139,7 @@ class CultureCrawler:
                 clean_words.append(word)
         return clean_words
 
-    def top_nouns(self):
+    def nouns(self):
         top_nouns = Counter(self.__clean_words)
 
         return json.dumps(top_nouns, ensure_ascii=False)
@@ -151,8 +150,29 @@ class CultureCrawler:
 
         return json.dumps(top_nouns, ensure_ascii=False)
 
+if __name__ == '__main__':
+        
+    start = time.time()  # 시작 시간 저장
+    political = Crawler('POLITICAL')
+    economy = Crawler('ECONOMY')
+    social = Crawler('SOCIAL')
+    life_cluture = Crawler('LIFE/CULTURE')
+    world = Crawler('WORLD')
+    it_science = Crawler('IT/SCIENCE')
 
-    
-c = CultureCrawler('IT/SCIENCE')
-data = c.top_nouns(50)
-print(data)
+    p_json = political.nouns()
+    e_json = economy.nouns()
+    s_json = social.nouns()
+    c_json = life_cluture.nouns()
+    w_json = world.nouns()
+    i_json = it_science.nouns()
+
+    db_handler = DBHandler()
+    db_handler.insert_crawling_data('P', p_json)
+    db_handler.insert_crawling_data('E', e_json)
+    db_handler.insert_crawling_data('S', s_json)
+    db_handler.insert_crawling_data('C', c_json)
+    db_handler.insert_crawling_data('W', w_json)
+    db_handler.insert_crawling_data('I', i_json)
+    db_handler.close()
+    print("time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
