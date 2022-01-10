@@ -1,6 +1,5 @@
 import pymysql as sql
 import configparser
-import json
 import time
 
 
@@ -30,12 +29,15 @@ class DBHandler:
 		self.cursor = self.conn.cursor()
 
 	def insert_crawling_data(self, type, clean_words):
-		now = time.strftime('%Y-%m-%d %H:%M:%S')
-		sql = '''
-			INSERT INTO data
-			VALUES(null, %s, %s, %s)'''
+		now = time.strftime('%Y-%m-%d')
+		hours = int(time.strftime('%H'))
+		times = int(hours / 3)
 
-		self.cursor.execute(sql, (now, type, clean_words))
+		sql = '''
+			INSERT INTO crawling_data
+			VALUES(null, %s, %s, %s, %s)'''
+
+		self.cursor.execute(sql, (now, times, type, clean_words))
 		self.conn.commit()
 
 	def close(self):
