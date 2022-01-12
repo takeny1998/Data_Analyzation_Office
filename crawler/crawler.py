@@ -131,7 +131,7 @@ class Crawler:
         stopwords = []
         clean_words = []
 
-        with open('/mnt/crawling/한글불용어.txt', 'r', encoding='utf8') as f:
+        with open('hangul_stopword.txt', 'r', encoding='utf8') as f:
             stopwords = f.read().split('\n')
         
         for word in result: 
