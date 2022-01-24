@@ -1,0 +1,87 @@
+
+/* cards */
+.topic-cards{
+	display:flex;
+	position: relative;
+
+	width:70%;
+	height:calc(70% - 240px);
+	
+	max-width: 1400px;
+	max-height:550px;
+	
+	margin:75px auto;
+}
+
+.topic-card{
+	position: relative;
+	width:16%;
+	height:100%;
+	overflow: hidden;
+	text-align: center;
+	transition:.2s all; 
+}
+
+.topic-cards:hover .topic-card{
+	opacity:.5;
+	transform: scale(.95);
+	box-shadow:none;
+}
+
+.topic-cards:hover .topic-card:hover{
+	transform:scale(1);
+	opacity:1;
+}
+
+.card-img {
+	width:100%;
+	height:100%;
+	object-fit: cover;
+}
+
+.card-overlay {
+	position: absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:100%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+	position: absolute;
+	left:50%;
+	top:35%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	white-space: nowrap;
+}
+
+.card-title {
+	font-family: score-bold;
+	font-size: 24px;
+	color:rgb(255, 255, 255)
+}
+
+#politics {
+	margin-right: 2%;
+}
+
+#economy {
+	margin-right: 2%;
+}
+
+#social {
+	margin-right: 2%;
+}
+
+#living {
+	margin-right: 2%;
+}
+
+#science {
+	margin-right: 2%;
+}
+
+#world-card {
+}

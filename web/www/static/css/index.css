@@ -131,10 +131,6 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	min-height: 150px;
 }
 
-#gap-expand {
-	min-height: 150px;
-}
-
 /* body elements */
 .content {
 	color:white;
@@ -166,6 +162,17 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 }
 
 /* expand container */
+
+
+#gap-expand {
+	height:20vh;
+	min-height:100px;
+}
+
+#expand-header {
+	height:140px;
+}
+
 #date-picker {
 	width: 200px;
 	height:30px;
@@ -182,6 +189,3 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 #footer {
 	height: 600px !important;
 }
-
-
-

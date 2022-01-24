@@ -3,6 +3,8 @@
 <!-- import section -->
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
 
@@ -70,18 +72,69 @@
 	</div>
 
 
-	<div id="expand-content" class="content" data-anchor="expand">
-		<div id="gap-expand" class="gap"></div>
-		
-		<div class="site-text">
-			<span id="headline">어느 날짜의 정보를 보고 싶으신가요?</span><br>
-			현재는 <span id="curt-date"></span>일의 정보를 표시하고 있어요. 아래 글상자를 클릭하시면 기준일을 변경하실 수 있어요.
+	<div class="content" data-anchor="expand">
+		<div id="gap-expand"></div>
+		<div id="expand-header">
+			<div class="site-text">
+				<span id="headline">어느 날짜의 정보를 보고 싶으신가요?</span><br>
+				현재는 <span id="curt-date"></span>일의 정보를 표시하고 있어요. 
+				아래 글상자를 클릭하시면 기준일을 변경하실 수 있어요.
+			</div>
+			<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
 		</div>
-	
-		<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
+		<div id="topics" class="topic-cards">
+			<div id="politics" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">정&nbsp;&nbsp;&nbsp;치</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/politics.jpg') }}" />
+				
+			</div>
+
+			<div id="economy" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">경&nbsp;&nbsp;&nbsp;제</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/economy.jpg') }}" />
+			</div>
+
+			<div id="social" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">사&nbsp;&nbsp;&nbsp;회</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/social.jpg') }}" />
+			</div>
+
+			<div id="living" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">생활/문화</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/living.jpg') }}" />
+			</div>
+
+			<div id="science" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">IT/과학</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/science.jpg') }}" />
+			</div>
+
+			<div id="world" class="topic-card">
+				<div class="card-overlay"></div>
+				<div class="card-body">
+					<span class="card-title">세&nbsp;&nbsp;&nbsp;계</span><hr>
+				</div>
+				<img class="card-img" src="{{ url_for('static', filename='images/world.jpg') }}" />
+			</div>
+		</div>
+		
 		<div id="gradient-overlay"></div>
 	</div>
-
 </div>
 
 

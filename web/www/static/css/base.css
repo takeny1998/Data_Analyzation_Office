@@ -1,34 +1,42 @@
 @charset "UTF-8";
 
-@font-face {
-		font-family: 'nexon';
-		src: url('/static/fonts/NEXON_LV1.otf') format('woff');
-}
 
 @font-face {
-		font-family: 'nexon-bold';
-		src: url('/static/fonts/NEXON_LV1_bold.otf') format('woff');
+	font-family: 'score-thin';
+	src: url('/static/fonts/score/SCDream3.otf') format('woff');
 }
 
 @font-face {
 		font-family: 'score';
-		src: url('/static/fonts/SCDream4.otf') format('woff');
+		src: url('/static/fonts/score/SCDream4.otf') format('woff');
 }
 
 @font-face {
 		font-family: 'score-bold';
-		src: url('/static/fonts/SCDream7.otf') format('woff');
+		src: url('/static/fonts/score/SCDream7.otf') format('woff');
 }
 
 @font-face {
-		font-family: 'baskin-robbins';
-		src: url('/static/fonts/배스킨라빈스B.otf') format('opentype');
+	font-family: 'score-extra';
+	src: url('/static/fonts/score/SCDream9.otf') format('woff');
+}
+
+
+@font-face {
+	font-family: 'nanum-myungjo';
+	src: url('/static/fonts/nanum/NanumMyeongjo.otf') format('woff');
 }
 
 @font-face {
-		font-family: 'gowun';
-		src: url('/static/fonts/GowunBatang-Regular.ttf') format('truetype');
+	font-family: 'nanum-myungjo-bold';
+	src: url('/static/fonts/nanum/NanumMyeongjoBold.otf') format('woff');
 }
+
+@font-face {
+	font-family: 'nanum-myungjo-extra';
+	src: url('/static/fonts/nanum/NanumMyeongjoExtraBold.otf') format('woff');
+}
+
 
 @font-face {
 		font-family: 'Chosunilbo_myungjo';
