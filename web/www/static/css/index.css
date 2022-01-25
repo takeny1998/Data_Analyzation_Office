@@ -52,7 +52,7 @@ body {
 	height:100vh;
 	background: rgb(255,255,255);
 	background: rgb(0,0,0);
-background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0) 100%);
+	background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.35) 65%, rgba(0,0,0,0) 100%);
 }
 
 /* navbar start ------------ */
@@ -141,11 +141,12 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 
 /* fold container */
 .site-text {
+	margin-bottom: 20px;
 	line-height: 1.5;
-	margin: 20px 0px;
 }
 
-#headline {
+
+.headline {
 	font-size:36px;
 }
 
@@ -163,14 +164,29 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 
 /* expand container */
 
+#expand {
+	display: flex;
+	flex-direction: column;
+}
 
 #gap-expand {
-	height:20vh;
+	height:15vh;
 	min-height:100px;
 }
 
 #expand-header {
-	height:140px;
+	padding:20px;
+}
+
+#date-container {
+	line-height: 2.5;
+}
+
+
+.title-sm {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
 }
 
 #date-picker {
@@ -184,6 +200,10 @@ background: linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(0,0,0,0.75) 35%, rgba(
 	background: rgba(255, 255, 255, 0.3);
 	border-bottom: 1px white solid;
 	border:none;
+}
+
+#expand-body {
+	background-color: white;
 }
 
 #footer {

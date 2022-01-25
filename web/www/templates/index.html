@@ -7,6 +7,7 @@
 
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+<script src="{{ url_for('static', filename='js/card.js') }}"></script>
 
 <!-- Date Picker -->
 <script src="{{ url_for('static', filename='js/date-dropper.js') }}"></script>
@@ -74,14 +75,20 @@
 
 	<div class="content" data-anchor="expand">
 		<div id="gap-expand"></div>
+
 		<div id="expand-header">
 			<div class="site-text">
-				<span id="headline">어느 날짜의 정보를 보고 싶으신가요?</span><br>
-				현재는 <span id="curt-date"></span>일의 정보를 표시하고 있어요. 
-				아래 글상자를 클릭하시면 기준일을 변경하실 수 있어요.
+				<span class="headline">어떤 정보를 보고 싶으신가요?</span><br>
+				데이터 분석소에서는 정치, 경제, 사회 등 다양한 분야의 정보를 제공하고 있어요. <br>
+				밑 배너를 클릭하면 각 주제에 맞는 데이터를 볼 수 있어요.
 			</div>
-			<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
+			<div id="date-container">
+				<span class="title-sm">데이터 기준일</span><br>
+				<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
+			</div>
+			
 		</div>
+
 		<div id="topics" class="topic-cards">
 			<div id="politics" class="topic-card">
 				<div class="card-overlay"></div>
@@ -133,6 +140,12 @@
 			</div>
 		</div>
 		
+		<div id="expand-body">
+			<div id="wordcloud-grid">
+
+			</div>
+		</div>
+
 		<div id="gradient-overlay"></div>
 	</div>
 </div>
