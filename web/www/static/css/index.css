@@ -202,7 +202,31 @@ body {
 }
 
 #expand-body {
+	display:none;
+	grid-gap: 10px;
+	grid-template-columns: 70% 30%;
+
+	width:60%;
+	max-width:1200px;
+	
+	margin:auto;
+	padding: 20px;
+
 	background-color: white;
+}
+
+#grid-wordcloud {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	background-color: blue;
+}
+
+#grid-bar {
+	background-color: rebeccapurple;
+}
+
+#grid-circle {
+	background-color: red;
 }
 
 #footer {

@@ -4,10 +4,10 @@
 	display:flex;
 	position: relative;
 
-	width:70%;
+	width:50%;
 	height:calc(70% - 240px);
-	max-width: 1400px;
-	max-height:550px;
+	max-width: 1200px;
+	max-height:500px;
 	
 	margin:40px auto;
 }
@@ -58,7 +58,7 @@
 
 .card-title {
 	font-family: score-bold;
-	font-size: 1.5vw;
+	font-size: 1.2vw;
 	color:rgb(255, 255, 255)
 }
 

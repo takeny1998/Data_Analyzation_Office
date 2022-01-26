@@ -42,6 +42,8 @@ function fold_card() {
         height: '10vh'
     })
 
+    $('#expand-body').css('display', 'grid')
+
     $('#expand-body').css('flex', '1')
 }
 
