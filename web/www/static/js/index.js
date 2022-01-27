@@ -58,6 +58,17 @@ anychart.onDocumentReady(function() {
 	var chart = anychart.tagCloud(data['C']);
 	chart.angles([0]);
 	chart.container("grid-wordcloud");
+	// create and configure a color scale.
+	var customColorScale = anychart.scales.linearColor();
+	customColorScale.colors(["#00467F", "#A5CC82"]);
+
+	// set the color scale as the color scale of the chart
+	chart.colorScale(customColorScale);
+	chart.background().fill("rgb(56, 56, 56)");
+	chart.fontFamily('score-bold')
+	// add and configure a color range
+	chart.colorRange().enabled(true);
+	chart.colorRange().length("90%");
 	// chart.getCredits().setEnabled(false);
 	chart.draw();
 });
