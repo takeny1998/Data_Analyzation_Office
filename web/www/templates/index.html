@@ -17,6 +17,10 @@
 <script src="https://unpkg.com/pageable@latest/dist/pageable.min.js"></script>
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/pageable@latest/dist/pageable.min.css">
 
+<script>
+	var data = "{{ value|safe }}";
+	data = JSON.parse(data.replaceAll('\'', '"'))
+</script>
 <!-- my docs -->
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
