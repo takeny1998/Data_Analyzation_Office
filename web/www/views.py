@@ -3,6 +3,7 @@ from database import db_handler
 from database.db_handler import DBHandler
 views = Blueprint("views", __name__)
 
+
 @views.route('/')
 def index():
      db_handler = DBHandler()

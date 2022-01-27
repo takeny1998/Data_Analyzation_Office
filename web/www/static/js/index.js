@@ -60,8 +60,9 @@ anychart.onDocumentReady(function() {
 	chart.container("grid-wordcloud");
 	// create and configure a color scale.
 	var customColorScale = anychart.scales.linearColor();
-	customColorScale.colors(["#00467F", "#A5CC82"]);
-
+	customColorScale.colors(["#7c7c7c", "#FFFFFF"]);
+	chart.selected().fill("#ffffff")
+	
 	// set the color scale as the color scale of the chart
 	chart.colorScale(customColorScale);
 	chart.background().fill("rgb(56, 56, 56)");
