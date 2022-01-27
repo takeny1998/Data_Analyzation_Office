@@ -19,7 +19,6 @@ class DBHandler:
 		DB_NAME = DB_props['NAME']
 		DB_USER = DB_props['USER']
 		DB_PW = DB_props['PW']
-
 		self.conn = sql.connect(
 						host=DB_HOST,
 						port=DB_PORT,
@@ -28,15 +27,6 @@ class DBHandler:
 						password=DB_PW)
 	
 		self.cursor = self.conn.cursor()
-
-	def insert_crawling_data(self, type, top_10, top_30, top_200):
-		now = time.strftime('%Y-%m-%d %H:%M:%S')
-		sql = '''
-			INSERT INTO data
-			VALUES(null, %s, %s, %s, %s, %s)'''
-
-		self.cursor.execute(sql, (now, type, top_10, top_30, top_200))
-		self.conn.commit()
 
 	def close(self):
 		self.conn.close()

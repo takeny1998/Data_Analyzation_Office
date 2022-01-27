@@ -208,17 +208,16 @@ body {
 
 	width:60%;
 	max-width:1200px;
+	max-height:600px;
 	
 	margin:auto;
-	padding: 20px;
-
-	background-color: white;
+	padding: 40px;
 }
 
 #grid-wordcloud {
 	grid-row-start: 1;
 	grid-row-end: 3;
-	background-color: blue;
+	background-color: white;
 }
 
 #grid-bar {

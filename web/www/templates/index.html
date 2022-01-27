@@ -5,9 +5,9 @@
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
 
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-<script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
-<script src="{{ url_for('static', filename='js/card.js') }}"></script>
+<!-- anyChart.js -->
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
 
 <!-- Date Picker -->
 <script src="{{ url_for('static', filename='js/date-dropper.js') }}"></script>
@@ -17,6 +17,10 @@
 <script src="https://unpkg.com/pageable@latest/dist/pageable.min.js"></script>
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/pageable@latest/dist/pageable.min.css">
 
+<!-- my docs -->
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+<script src="{{ url_for('static', filename='js/card.js') }}"></script>
 
 
 <!-- import section end -->
@@ -142,13 +146,10 @@
 		
 		<div id="expand-body">
 			<div id="grid-wordcloud" class="grid">
-
 			</div>
 			<div id="grid-bar" class="grid">
-
 			</div>
 			<div id="grid-circle" class="grid">
-
 			</div>
 		</div>
 

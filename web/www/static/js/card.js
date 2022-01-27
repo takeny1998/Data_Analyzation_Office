@@ -1,6 +1,8 @@
 $(document).ready(function() {
     $('.topic-card').on('click', function() {
-        $(this).addClass('fold')
+        $('.topic-card').addClass('topic-fold')
+        $(this).addClass('topic-selected')
+
         fold_card()
     })
 })
@@ -10,7 +12,7 @@ function fold_card() {
         height: '75px',
         width: '750px',
         marginTop: '10px',
-        marginBottom: '60px'
+        marginBottom: '0px'
     });
     
 

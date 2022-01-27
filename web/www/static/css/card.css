@@ -23,12 +23,21 @@
 .topic-cards:hover .topic-card{
 	opacity:.5;
 	transform: scale(.95);
-	box-shadow:none;
 }
 
 .topic-cards:hover .topic-card:hover{
 	transform:scale(1);
 	opacity:1;
+}
+
+.topic-selected {
+	transform:scale(1) !important;
+	opacity:1 !important;
+}
+
+.topic-fold {
+	opacity:.5;
+	transform: scale(.95);
 }
 
 .card-img {
