@@ -18,8 +18,10 @@
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/pageable@latest/dist/pageable.min.css">
 
 <script>
-	var data = "{{ value|safe }}";
-	data = JSON.parse(data.replaceAll('\'', '"'))
+	// var data = "{{ value|safe }}";
+	// data = JSON.parse(data.replaceAll('\'', '"'))
+
+	var url_get_data = "{{ url_for('views.get_crawling_data')}}"
 </script>
 
 <!-- my docs -->

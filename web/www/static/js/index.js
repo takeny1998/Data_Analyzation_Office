@@ -37,6 +37,15 @@ $(document).ready(function() {
 			$('#site-logo').attr('src', '/static/images/logo.png')
 		}
 	)
+
+	
+    $('.topic-card').on('click', function() {
+        $('.topic-card').addClass('topic-fold')
+        $(this).addClass('topic-selected')
+
+        fold_card()
+		get_crawling_data()
+    })
 	
 	// 카운트다운
 	refresh_data();
@@ -52,24 +61,58 @@ function get_fmtted_date(dt) {
 	return dt.getFullYear() + '-' + (dt.getMonth()+1).toString().padStart(2, '0') + '-'+ (dt.getDate()).toString().padStart(2, '0');
 }
 
+function get_crawling_data() {
+	$.ajax({
+		type: 'POST',
+		url: url_get_data,
+		data: JSON.stringify({
+		'date':'2022-01-28',
+		'type':'C'
+	}),
+		dataType : 'JSON',
+		contentType: "application/json",
+		success: function(data){
+			god = console.log(data)
+			show_graph(data)
+		},
+		error: function(request, status, error){
+			alert('ajax 통신 실패')
+			alert(error);
+		}
+	})
+}
 
-// chart
-anychart.onDocumentReady(function() {
-	var chart = anychart.tagCloud(data['C']);
-	chart.angles([0]);
-	chart.container("grid-wordcloud");
+
+function show_graph(data) {
+	// word_cloud
+	var word_cloud = anychart.tagCloud(data);
+	word_cloud.angles([0]);
+	word_cloud.container("grid-wordcloud");
+
 	// create and configure a color scale.
 	var customColorScale = anychart.scales.linearColor();
+	word_cloud.hover({
+		fill: '#ffffff'
+	});
+
 	customColorScale.colors(["#7c7c7c", "#FFFFFF"]);
-	chart.selected().fill("#ffffff")
+	word_cloud.selected({
+		fill: '#ffffff',
+		fontWeight: 'bold'
+	});
 	
 	// set the color scale as the color scale of the chart
-	chart.colorScale(customColorScale);
-	chart.background().fill("rgb(56, 56, 56)");
-	chart.fontFamily('score-bold')
+	word_cloud.colorScale(customColorScale);
+	word_cloud.background().fill("rgb(56, 56, 56)");
+	word_cloud.fontFamily('score-bold');
+	
 	// add and configure a color range
-	chart.colorRange().enabled(true);
-	chart.colorRange().length("90%");
-	// chart.getCredits().setEnabled(false);
-	chart.draw();
-});
+	word_cloud.colorRange().enabled(true);
+	word_cloud.colorRange().length("90%");
+	word_cloud.draw();
+
+
+	var anychart_bar = anychart.bar();
+	var bar_graph = anychart_bar.bar(data.slice(0, 10));
+	bar_graph.container("grid-bar");
+}
