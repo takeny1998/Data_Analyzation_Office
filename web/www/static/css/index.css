@@ -128,8 +128,13 @@ body {
 /* navbar end ------------ */
 
 .gap {
-	height:20%;
-	min-height: 150px;
+	height:15vh;
+	min-height:100px;
+}
+
+.gap-fold {
+	height:25vh;
+	min-height:100px;
 }
 
 /* body elements */
@@ -170,10 +175,6 @@ body {
 	flex-direction: column;
 }
 
-#gap-expand {
-	height:15vh;
-	min-height:100px;
-}
 
 #expand-header {
 	padding:20px;
@@ -218,14 +219,13 @@ body {
 #grid-wordcloud {
 	grid-row-start: 1;
 	grid-row-end: 3;
+	background-color: rgb(56, 56, 56);
 }
 
 #grid-bar {
-	background-color: rebeccapurple;
-}
-
-#grid-circle {
-	background-color: red;
+	background-color: rgb(56, 56, 56);
+	grid-row-start: 1;
+	grid-row-end: 3;
 }
 
 #footer {

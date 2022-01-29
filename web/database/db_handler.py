@@ -29,7 +29,6 @@ class DBHandler:
 	
 
 	def get_crawling_data(self, date, times, type):
-
 		dict_cursor = self.__conn.cursor(pymysql.cursors.DictCursor)
 		sql = '''
 			SELECT * FROM crawling_data
@@ -38,24 +37,9 @@ class DBHandler:
 		dict_cursor.execute(sql, (date, times, type))
 		sql_rs = dict_cursor.fetchone()
 
-		result = []
-		
 		clean_words = json.loads(sql_rs['clean_words'])
+		return clean_words
 
-		for key, value in clean_words.items():
-			# clean_word = json.dumps({
-			# 	'x': key,
-			# 	'value': value
-			# }, ensure_ascii=False)
-			result.append({
-				'x': key,
-				'value': value
-			},)
-
-			sorted_result = sorted(result, key=(lambda x: x['value']), reverse=True)
-
-
-		return sorted_result[:200]
 
 	def close(self):
 		self.__conn.close()

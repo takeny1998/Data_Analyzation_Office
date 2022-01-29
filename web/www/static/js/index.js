@@ -72,8 +72,9 @@ function get_crawling_data() {
 		dataType : 'JSON',
 		contentType: "application/json",
 		success: function(data){
-			god = console.log(data)
-			show_graph(data)
+
+			show_tagcloud(data.tag)
+			show_barchart(data.bar)
 		},
 		error: function(request, status, error){
 			alert('ajax 통신 실패')
@@ -83,36 +84,60 @@ function get_crawling_data() {
 }
 
 
-function show_graph(data) {
-	// word_cloud
-	var word_cloud = anychart.tagCloud(data);
-	word_cloud.angles([0]);
-	word_cloud.container("grid-wordcloud");
+function show_tagcloud(data) {
+	// chart
+	var chart = anychart.tagCloud(data);
+	chart.angles([0]);
+	chart.container("grid-wordcloud");
 
 	// create and configure a color scale.
 	var customColorScale = anychart.scales.linearColor();
-	word_cloud.hover({
+	chart.hover({
 		fill: '#ffffff'
 	});
 
 	customColorScale.colors(["#7c7c7c", "#FFFFFF"]);
-	word_cloud.selected({
+	chart.selected({
 		fill: '#ffffff',
 		fontWeight: 'bold'
 	});
 	
 	// set the color scale as the color scale of the chart
-	word_cloud.colorScale(customColorScale);
-	word_cloud.background().fill("rgb(56, 56, 56)");
-	word_cloud.fontFamily('score-bold');
+	chart.colorScale(customColorScale);
+	chart.background().fill("rgb(56, 56, 56)");
+	chart.fontFamily('score-bold');
 	
 	// add and configure a color range
-	word_cloud.colorRange().enabled(true);
-	word_cloud.colorRange().length("90%");
-	word_cloud.draw();
+	chart.colorRange().enabled(true);
+	chart.colorRange().length("90%");
+	chart.draw();
 
+}
 
-	var anychart_bar = anychart.bar();
-	var bar_graph = anychart_bar.bar(data.slice(0, 10));
-	bar_graph.container("grid-bar");
+function show_barchart(data) {
+	var chart = anychart.bar();
+	var series = chart.bar(data);
+
+	chart.container("grid-bar");
+	chart.background().fill("rgb(56, 56, 56)");
+
+	series.normal().fill("#d4d4d4");
+	series.normal().stroke(null);
+
+	series.labels().fontFamily("score");
+	series.labels().fontColor("#d4d4d4");
+	series.labels(true);
+	
+
+	chart.title('상위 15개 검색단어');
+	chart.title().fontFamily('score-bold');
+	chart.title().fontColor('#d4d4d4');
+	chart.title().fontSize(18);
+
+	chart.xAxis().labels().fontFamily('score');
+	chart.xAxis().labels().fontColor('#d4d4d4');
+
+	chart.yAxis().labels().fontFamily('score');
+	chart.yAxis().labels().fontColor('#d4d4d4');
+	chart.draw();
 }

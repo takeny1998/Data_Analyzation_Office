@@ -21,6 +21,31 @@ def get_crawling_data():
      type = data['type']
 
      crawling_data = db_handler.get_crawling_data(today, times, type)
+     tagcloud_data = trans_tagcloud_data(crawling_data, 200)
+     barchart_data = trans_barchart_data(crawling_data, 15)
      db_handler.close()
-     return json.dumps(crawling_data)
 
+     return json.dumps({'tag': tagcloud_data, 'bar':barchart_data})
+
+
+def trans_tagcloud_data(input, top_num):
+     result = []
+     
+     for key, value in input.items():
+          result.append({
+               'x': key,
+               'value': value
+          })
+
+     result = sorted(result, key=(lambda x: x['value']), reverse=True)
+     return result[:top_num]
+
+
+def trans_barchart_data(input, top_num):
+     result = []
+
+     for key, value in input.items():
+          result.append([key, value])
+
+     result = sorted(result, key=(lambda x: x[1]), reverse=True)
+     return result[:top_num]
