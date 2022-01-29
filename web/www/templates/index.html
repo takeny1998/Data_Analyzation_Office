@@ -6,9 +6,8 @@
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
 
 <!-- anyChart.js -->
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/anychart@8.11.0/dist/js/anychart-base.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/anychart@8.11.0/dist/js/anychart-tag-cloud.min.js"></script>
 <!-- Date Picker -->
 <script src="{{ url_for('static', filename='js/date-dropper.js') }}"></script>
 <script src="{{ url_for('static', filename='js/date-dropper-ko.js') }}"></script>
@@ -65,7 +64,7 @@
 <div id="wrap">
 	
 	<div id="fold-content" class="content" data-anchor="fold">
-		<div id="gap-fold" class="gap"></div>
+		<div class="gap-fold"></div>
 		<div class="site-text">
 			<span class="headline">데이터 갱신까지 남은 시간</span><br>
 			데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
@@ -85,7 +84,7 @@
 
 
 	<div class="content" data-anchor="expand">
-		<div id="gap-expand"></div>
+		<div class="gap"></div>
 
 		<div id="expand-header">
 			<div class="site-text">
@@ -155,8 +154,6 @@
 			<div id="grid-wordcloud" class="grid">
 			</div>
 			<div id="grid-bar" class="grid">
-			</div>
-			<div id="grid-circle" class="grid">
 			</div>
 		</div>
 
