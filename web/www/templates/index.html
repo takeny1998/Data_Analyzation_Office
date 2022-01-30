@@ -93,14 +93,13 @@
 				밑 배너를 클릭하면 각 주제에 맞는 데이터를 볼 수 있어요.
 			</div>
 			<div id="date-container">
-				<span class="title-sm">데이터 기준일</span><br>
 				<input type="date" id="date-picker" data-dd-opt-custom-class="datepicker-style" />
 			</div>
 			
 		</div>
 
 		<div id="topics" class="topic-cards">
-			<div id="politics" class="topic-card">
+			<div id="politics" class="topic-card" topic="P">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">정&nbsp;&nbsp;&nbsp;치</span><hr>
@@ -109,7 +108,7 @@
 				
 			</div>
 
-			<div id="economy" class="topic-card">
+			<div id="economy" class="topic-card" topic="E">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">경&nbsp;&nbsp;&nbsp;제</span><hr>
@@ -117,7 +116,7 @@
 				<img class="card-img" src="{{ url_for('static', filename='images/economy.jpg') }}" />
 			</div>
 
-			<div id="social" class="topic-card">
+			<div id="social" class="topic-card" topic="S">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">사&nbsp;&nbsp;&nbsp;회</span><hr>
@@ -125,7 +124,7 @@
 				<img class="card-img" src="{{ url_for('static', filename='images/social.jpg') }}" />
 			</div>
 
-			<div id="living" class="topic-card">
+			<div id="living" class="topic-card" topic="C">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">생활/문화</span><hr>
@@ -133,7 +132,7 @@
 				<img class="card-img" src="{{ url_for('static', filename='images/living.jpg') }}" />
 			</div>
 
-			<div id="science" class="topic-card">
+			<div id="science" class="topic-card" topic="I">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">IT/과학</span><hr>
@@ -141,7 +140,7 @@
 				<img class="card-img" src="{{ url_for('static', filename='images/science.jpg') }}" />
 			</div>
 
-			<div id="world" class="topic-card">
+			<div id="world" class="topic-card" topic="W">
 				<div class="card-overlay"></div>
 				<div class="card-body">
 					<span class="card-title">세&nbsp;&nbsp;&nbsp;계</span><hr>

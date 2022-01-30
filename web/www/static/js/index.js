@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 	var today = get_fmtted_date(new Date());
@@ -10,7 +11,6 @@ $(document).ready(function() {
 		expandedOnly: true,
 		onChange: function (res) {
 			selected_day = res.output.y + "-" + res.output.mm + "-" + res.output.dd;
-			console.log(selected_day)
 		}
 	});
 
@@ -38,13 +38,13 @@ $(document).ready(function() {
 		}
 	)
 
-	
     $('.topic-card').on('click', function() {
         $('.topic-card').addClass('topic-fold')
         $(this).addClass('topic-selected')
-
+		var topic = $(this).attr("topic");
+		console.log(topic)
         fold_card()
-		get_crawling_data()
+		get_crawling_data(topic)
     })
 	
 	// 카운트다운
@@ -61,18 +61,20 @@ function get_fmtted_date(dt) {
 	return dt.getFullYear() + '-' + (dt.getMonth()+1).toString().padStart(2, '0') + '-'+ (dt.getDate()).toString().padStart(2, '0');
 }
 
-function get_crawling_data() {
+
+function get_crawling_data(type) {
+	$('#grid-wordcloud').html('')
+	$('#grid-bar').html('')
 	$.ajax({
 		type: 'POST',
 		url: url_get_data,
 		data: JSON.stringify({
-		'date':'2022-01-28',
-		'type':'C'
+		'date':selected_day,
+		'type':type
 	}),
 		dataType : 'JSON',
 		contentType: "application/json",
 		success: function(data){
-
 			show_tagcloud(data.tag)
 			show_barchart(data.bar)
 		},
@@ -86,7 +88,7 @@ function get_crawling_data() {
 
 function show_tagcloud(data) {
 	// chart
-	var chart = anychart.tagCloud(data);
+	chart = anychart.tagCloud(data);
 	chart.angles([0]);
 	chart.container("grid-wordcloud");
 
@@ -111,8 +113,8 @@ function show_tagcloud(data) {
 	chart.colorRange().enabled(true);
 	chart.colorRange().length("90%");
 	chart.draw();
-
 }
+
 
 function show_barchart(data) {
 	var chart = anychart.bar();
@@ -128,7 +130,6 @@ function show_barchart(data) {
 	series.labels().fontColor("#d4d4d4");
 	series.labels(true);
 	
-
 	chart.title('상위 15개 검색단어');
 	chart.title().fontFamily('score-bold');
 	chart.title().fontColor('#d4d4d4');
