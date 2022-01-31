@@ -17,9 +17,6 @@
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/pageable@latest/dist/pageable.min.css">
 
 <script>
-	// var data = "{{ value|safe }}";
-	// data = JSON.parse(data.replaceAll('\'', '"'))
-
 	var url_get_data = "{{ url_for('views.get_crawling_data')}}"
 </script>
 
@@ -87,8 +84,10 @@
 		<div class="gap"></div>
 
 		<div id="expand-header">
-			<div class="site-text">
-				<span class="headline">어떤 정보를 보고 싶으신가요?</span><br>
+			<div id="expand-text" class="site-text">
+				<span id="expand-headline" class="headline">
+					어떤 정보를 보고 싶으신가요?
+				</span><br>
 				데이터 분석소에서는 정치, 경제, 사회 등 다양한 분야의 정보를 제공하고 있어요. <br>
 				밑 배너를 클릭하면 각 주제에 맞는 데이터를 볼 수 있어요.
 			</div>
@@ -159,7 +158,4 @@
 		<div id="gradient-overlay"></div>
 	</div>
 </div>
-
-
-
 {% endblock %}

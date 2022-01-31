@@ -17,12 +17,10 @@ function fold_card() {
     $('.card-overlay').animate({
         opacity: '0.6'
     })
-
-    $('.site-text').animate({
-        fontSize: '0px'
+    $('#expand-headline').animate({
+        fontSize: '21px'
     })
-
-    $('.headline').animate({
+    $('#expand-text').animate({
         fontSize: '0px'
     })
 

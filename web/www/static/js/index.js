@@ -40,9 +40,9 @@ $(document).ready(function() {
 
     $('.topic-card').on('click', function() {
         $('.topic-card').addClass('topic-fold')
+        $('.topic-card').removeClass('topic-selected')
         $(this).addClass('topic-selected')
 		var topic = $(this).attr("topic");
-		console.log(topic)
         fold_card()
 		get_crawling_data(topic)
     })

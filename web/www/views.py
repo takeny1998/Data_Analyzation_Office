@@ -12,15 +12,20 @@ def index():
 
 @views.route('/get_crawling_data', methods=['POST'])
 def get_crawling_data():
-     db_handler = DBHandler()
-     now = dt.datetime.now()
-     times = int(now.hour / 3)
-
      data = request.get_json()
-     today = data['date']
+     selected_day = data['date']
      type = data['type']
 
-     crawling_data = db_handler.get_crawling_data(today, times, type)
+     db_handler = DBHandler()
+     now = dt.datetime.now()
+     today = now.strftime('%Y-%m-%d')
+
+     if today == selected_day:
+          times = int(now.hour / 3)
+     else:
+          times = 7
+
+     crawling_data = db_handler.get_crawling_data(selected_day, times, type)
      tagcloud_data = trans_tagcloud_data(crawling_data, 200)
      barchart_data = trans_barchart_data(crawling_data, 15)
      db_handler.close()
