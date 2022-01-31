@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- import section -->
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
 
 <!-- anyChart.js -->
 <script src="https://cdn.jsdelivr.net/npm/anychart@8.11.0/dist/js/anychart-base.min.js"></script>
@@ -21,6 +18,10 @@
 </script>
 
 <!-- my docs -->
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/countdown.css') }}">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/card.css') }}">
+
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
 <script src="{{ url_for('static', filename='js/card.js') }}"></script>
@@ -45,13 +46,10 @@
 	
 		<ul id="site-links" class="nav-item">
 			<li class="site-link">
-				<a href="#">마이페이지</a>
+				<a href="#fold">메인페이지</a>
 			</li>
 			<li class="site-link">
-				<a href="#">위시리스트</a>
-			</li>
-			<li class="site-link">
-				<a href="#">로그인</a>
+				<a href="#expand">데이터 확인하기</a>
 			</li>
 		</ul>
 	</nav>
@@ -60,23 +58,40 @@
 
 <div id="wrap">
 	
-	<div id="fold-content" class="content" data-anchor="fold">
+	<div class="content" data-anchor="fold">
 		<div class="gap-fold"></div>
-		<div class="site-text">
-			<span class="headline">데이터 갱신까지 남은 시간</span><br>
-			데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
-			오늘은 총 8번의 갱신 중에 <span id="interval"></span>번 갱신했어요.
-		</div>
-		<div id="countdown">
-			<ul>
-				<li><span class="time" id="hours"></span>Hours</li>
-				<li><span class="time" id="minutes"></span>Minutes</li>
-				<li><span class="time" id="seconds"></span>Seconds</li>
-			</ul>
-		</div>
+		<div id="fold-content">
+			<div class="site-text">
+				<span class="headline">데이터 분석소에 오신 것을 환영해요!</span><br>
+				<div class="logo-container">
+					<img src="{{ url_for('static', filename='images/naver.png') }}"/>
+					<img src="{{ url_for('static', filename='images/selenium.png') }}"/>
+					<img src="{{ url_for('static', filename='images/konlpy.png') }}"/>
+				</div>
+				데이터 분석소는 시간이 없는 현대인들을 위하여 당일의 키워드를 알려드리는 서비스예요.<br>
+				웹 크롤링 기술을 활용해 네이버 뉴스 헤드라인 기사들을 자동으로 수집하여, 단어의 빈도를 분석해<br>
+				그 데이터를 워드클라우드 등 각종 그래프로 그려 사용자들에게 보여주고 있어요.<br>
+				
+			</div>
 
-		<a href="#" id="btn-tutorial" class="btn-flip" 
-		data-front="처음 방문하셨나요?" data-back="데이터 분석소 알아보기"></a>
+			<div id="update-time-text" class="site-text">
+				<span class="headline">데이터 갱신까지 남은 시간</span><br>
+				데이터 분석소는 정확한 정보 전달을 위해, 3시간마다 데이터를 갱신해요.<br>
+				오늘은 총 8번의 갱신 중에 <span id="interval"></span>번 갱신했어요.
+			</div>
+			<div id="countdown">
+				<ul>
+					<li><span class="time" id="hours"></span>Hours</li>
+					<li><span class="time" id="minutes"></span>Minutes</li>
+					<li><span class="time" id="seconds"></span>Seconds</li>
+				</ul>
+			</div>
+	
+			<div id="action-btns">
+				<a href="#expand" class="btn-flip" 
+				data-front="데이터 확인하기" data-back="다음 페이지로"></a>
+			</div>
+		</div>
 	</div>
 
 

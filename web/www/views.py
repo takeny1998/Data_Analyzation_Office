@@ -9,6 +9,10 @@ views = Blueprint("views", __name__)
 def index():
      return render_template('index.html')
 
+@views.route('/get_started')
+def get_started():
+     return render_template('get_started.html')
+
 
 @views.route('/get_crawling_data', methods=['POST'])
 def get_crawling_data():
@@ -25,7 +29,15 @@ def get_crawling_data():
      else:
           times = 7
 
-     crawling_data = db_handler.get_crawling_data(selected_day, times, type)
+     while True:
+          try:
+               crawling_data = db_handler.get_crawling_data(
+                    selected_day, times, type)
+               break
+          except TypeError:
+               times -= 1
+               continue
+
      tagcloud_data = trans_tagcloud_data(crawling_data, 200)
      barchart_data = trans_barchart_data(crawling_data, 15)
      db_handler.close()

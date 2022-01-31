@@ -75,7 +75,7 @@ body {
 #site-logo {
 	left: 30px;
 	width: auto;
-	height: 40px;
+	height: 50px;
 }
 
 #site-links {
@@ -131,12 +131,6 @@ body {
 	height:15vh;
 	min-height:100px;
 }
-
-.gap-fold {
-	height:25vh;
-	min-height:100px;
-}
-
 /* body elements */
 .content {
 	color:white;
@@ -146,30 +140,48 @@ body {
 }
 
 /* fold container */
+
+#update-time-text {
+	margin-top:80px;
+}
 .site-text {
 	margin-bottom: 20px;
 	line-height: 1.5;
+	font-size:18px;
 }
-
 
 .headline {
-	font-size:36px;
+	font-size:32px;
 }
 
-#btn-tutorial {
-	margin-top: 70px;
+
+.gap-fold {
+	height:20vh;
+	min-height:100px;
 }
 
-.tooltip-container {
-	position:absolute;
-	bottom:50px;
-	width:100%;
-	height:auto;
-	text-align: center;
+.logo-container {
+	display:flex;
+	justify-content: center;
+	padding: 20px;
+}
+
+.logo-container > img {
+	width:auto;
+	height: 50px;
+	margin: 0px 15px;
+}
+
+#action-btns {
+	display:flex;
+	width: 500px;
+	justify-content: space-around;
+	align-items: center;
+	margin:auto;
+	margin-top: 50px;
 }
 
 /* expand container */
-
 #expand {
 	display: flex;
 	flex-direction: column;

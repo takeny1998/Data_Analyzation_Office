@@ -1,7 +1,7 @@
 
 function fold_card() {
     $('.topic-cards').animate({
-        height: '75px',
+        height: '60px',
         width: '750px',
         marginTop: '10px',
         marginBottom: '0px'
@@ -11,17 +11,20 @@ function fold_card() {
         top: '60%'
     })
 
+    $('#expand-text').animate({
+        height: '0px',
+        opacity: '0'
+    })
+
     $('.card-body').children('hr').animate({
         opacity: '0'
     })
     $('.card-overlay').animate({
         opacity: '0.6'
     })
-    $('#expand-headline').animate({
-        fontSize: '21px'
-    })
-    $('#expand-text').animate({
-        fontSize: '0px'
+
+    $('.gap').animate({
+        height: '10vh'
     })
 
     $('.card-title').animate({
