@@ -144,10 +144,11 @@ body {
 #update-time-text {
 	margin-top:80px;
 }
+
 .site-text {
 	margin-bottom: 20px;
 	line-height: 1.5;
-	font-size:18px;
+	font-size:16px;
 }
 
 .headline {
@@ -231,11 +232,11 @@ body {
 #grid-wordcloud {
 	grid-row-start: 1;
 	grid-row-end: 3;
-	background-color: rgb(56, 56, 56);
+	background-color: rgb(39, 39, 39);
 }
 
 #grid-bar {
-	background-color: rgb(56, 56, 56);
+	background-color: rgb(39, 39, 39);
 	grid-row-start: 1;
 	grid-row-end: 3;
 }

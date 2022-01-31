@@ -5,7 +5,7 @@ $(document).ready(function() {
 	
 	new dateDropper({
 		selector: '#date-picker',
-		minDate: "2021-12-17",
+		minDate: "2022-01-10",
 		lang: 'ko',
 		maxDate: today,
 		expandedOnly: true,
@@ -75,8 +75,12 @@ function get_crawling_data(type) {
 		dataType : 'JSON',
 		contentType: "application/json",
 		success: function(data){
-			show_tagcloud(data.tag)
-			show_barchart(data.bar)
+			if(data.status == '200') {
+				show_tagcloud(data.tag)
+				show_barchart(data.bar)
+			} else{
+				alert('해당 날자에 데이터가 없습니다.');
+			}
 		},
 		error: function(request, status, error){
 			alert('ajax 통신 실패')
@@ -88,7 +92,7 @@ function get_crawling_data(type) {
 
 function show_tagcloud(data) {
 	// chart
-	chart = anychart.tagCloud(data);
+	var chart = anychart.tagCloud(data);
 	chart.angles([0]);
 	chart.container("grid-wordcloud");
 
@@ -125,6 +129,8 @@ function show_barchart(data) {
 
 	series.normal().fill("#d4d4d4");
 	series.normal().stroke(null);
+
+	series.selected().fill('#ffffff');
 
 	series.labels().fontFamily("score");
 	series.labels().fontColor("#d4d4d4");

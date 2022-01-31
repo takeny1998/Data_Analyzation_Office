@@ -35,6 +35,8 @@ def get_crawling_data():
                     selected_day, times, type)
                break
           except TypeError:
+               if times < 1:
+                    return json.dumps({'status': '404'})
                times -= 1
                continue
 
@@ -42,7 +44,7 @@ def get_crawling_data():
      barchart_data = trans_barchart_data(crawling_data, 15)
      db_handler.close()
 
-     return json.dumps({'tag': tagcloud_data, 'bar':barchart_data})
+     return json.dumps({'status': '200', 'tag': tagcloud_data, 'bar':barchart_data})
 
 
 def trans_tagcloud_data(input, top_num):
