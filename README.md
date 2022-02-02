@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/89298198/152172412-8701cf04-f10e-4531-8b1c-a8e16f5be2a0.png" />
+</p>
+
+
 ## Data Analyzation Office
 ### [DEMO SITE](https://data.tatine.kr)
 
